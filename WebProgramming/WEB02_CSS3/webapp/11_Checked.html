@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>11_Checked</title>
+<style type="text/css">
+	#text{width:650px; height:300px; background:silver; overflow:hidden;
+	transition-duration:1s;}
+	input[type=checkbox]:checked~#text {height:0px;}
+	
+	#button1{width:300px; height:20px; background:yellow;
+	border:1px solid black;}
+	
+	#button1:active+#text{height:0px;}
+</style>
+</head>
+<body>
+<input type="checkbox" />체크하면 아래 텍스트가 사라집니다&nbsp;&nbsp;&nbsp;
+<div id="button1" >클릭하면 아래 텍스트가 사라집니다</div>
+<div id="text">
+	<h1>Lorem ipsum</h1>    
+	<p>모든 국민은 능력에 따라 균등하게 교육을 받을 권리를 가진다. 국민경제자문회의의 
+	조직·직무범위 기타 필요한 사항은 법률로 정한다. 통신·방송의 시설기준과 신문의 기능을 
+	보장하기 위하여 필요한 사항은 법률로 정한다. 재산권의 행사는 공공복리에 적합하도록 
+	하여야 한다. 국가는 과학기술의 혁신과 정보 및 인력의 개발을 통하여 국민경제의 발전에 
+	노력하여야 한다. 국무총리 또는 행정각부의 장은 소관사무에 관하여 법률이나 대통령령의 위임 
+	또는 직권으로 총리령 또는 부령을 발할 수 있다. 의무교육은 무상으로 한다. 대한민국의 
+	경제질서는 개인과 기업의 경제상의 자유와 창의를 존중함을 기본으로 한다</p>
+</div>
+</body>
+</html>

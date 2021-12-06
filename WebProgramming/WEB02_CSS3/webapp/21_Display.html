@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>21_Display</title>
+<style type="text/css">
+	.box{background-color: yellow; width:300px; height: 100px;margin: 10px; }
+	#box1{display: none;}		/* 화면에서 사라집니다. 자리도 없어집니다. */
+	#box2{display: inline;}	/* div 에 display:inline; 가 적용되면 width, height 가 적용되지않고 span 처럼 작동합니다.*/
+	#box3{display: inline-block;}	/* inline 에서 width, height 만 살려내어 표시합니다. */
+	#box4{display: block;}		/* display:block 원래 div 가 block 이므로 변화가 없습니다. */
+</style>
+</head>
+<body>
+<span>Dummy</span>
+<div id="box1" class="box">
+<span>정기회의 회기는 100일을, 임시회의 회기는 30일을 초과할 수 없다.</span></div>
+<span>Dummy</span><br/><br/>
+<span>Dummy</span>
+<div id="box2" class="box">
+<span>정기회의 회기는 100일을, 임시회의 회기는 30일을 초과할 수 없다.</span></div>
+<span>Dummy</span><br/><br/>
+<span>Dummy</span>
+<div id="box3" class="box">
+<span>정기회의 회기는 100일을, 임시회의 회기는 30일을 초과할 수 없다.</span></div>
+<span>Dummy</span><br/><br/>
+<span>Dummy</span>
+<div id="box4" class="box">
+<span>정기회의 회기는 100일을, 임시회의 회기는 30일을 초과할 수 없다.</span></div>
+<span>Dummy</span><br/><br/>
+</body>
+</html>

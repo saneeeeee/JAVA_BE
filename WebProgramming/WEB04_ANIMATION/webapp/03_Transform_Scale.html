@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>03_Transform_Scale</title>
+    <style type="text/css">
+        .origin{width: 200px;height: 134px;border: 1px solid black ;float: left; margin: 40px;overflow: hidden;}
+        .origin>div{transition:1s; /* transition-duration: 1s; */}
+        img{width: 200px;}
+        .scalex:hover{transform: scaleX(1.2);}
+        .scaley:hover{transform: scaleY(1.5);}
+        .scalexy:hover{transform: scale(1.7);}
+    </style>
+</head>
+<body>
+    <div class="origin">
+        <div class="scalex"><img src="images/fruit.jpg"></div>
+    </div>
+    <div class="origin">
+        <div class="scaley"><img src="images/fruit.jpg"></div>
+    </div>
+    <div class="origin">
+        <div class="scalexy"><img src="images/fruit.jpg"></div>
+    </div>
+</body>
+</html>
