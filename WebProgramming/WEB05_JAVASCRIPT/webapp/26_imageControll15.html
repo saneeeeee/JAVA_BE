@@ -1,0 +1,100 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>25_imageControll14</title>
+    <style type="text/css">
+        #view{ position:relative; width:600px; height:400px; margin:0 auto; border:1px dashed black; overflow: hidden;}
+        #imgs{ position:absolute; width:4800px; height:400px; left:0; top:0; border:1px dashed red; transition: 0.3s; }
+        img{ width:600px; height:400px; }
+
+        #remot{ position:relative; width:350px; height:50px; border:1px solid white; margin:0 auto; top:350px; text-align: center;}
+        #remot ul{ list-style:none; margin:0; padding:0; display:inline-block;}
+        #remot ul li{float: left; width: 20px; height:20px; background:white;  margin:15px 4px;font-size: 14px;cursor: pointer;font-weight: bold;}
+    </style>
+    <script type="text/javascript">
+        var playing = false;
+        var num = 0;
+        var timer;
+
+        function play_stop(){
+            if(!playing){
+                        timer = setInterval(function(){
+                            if(num==7) num=0;else num++;
+                            document.getElementById('imgs').style.left = (-600*num)+'px';
+                        },1000);
+                        document.getElementById('btn').innerHTML = '■';
+                        playing = true;
+                    }else{
+                        window.clearInterval(timer);
+                        document.getElementById('btn').innerHTML = '▶';
+                        playing = false;
+                    }
+        }
+
+        function move(x){
+            switch(x){
+                case -1:
+                    if(num==0)return;
+                    num--;
+                    break;
+                case 8:
+                    if(num==7)return;
+                    num++;
+                    break;
+                case 0: case 1: case 2: case 3: case 4: case 5: case 6: case 7: 
+                    num = x; 
+                    break;
+                case 9:
+                    play_stop();
+                    break;
+                }
+                /*if(x==9){
+                if(!playing){
+                    timer = setInterval(function(){
+                        if(num==7) num=0;else num++;
+                        document.getElementById('imgs').style.left = (-600*num)+'px';
+                    },1000);
+                    document.getElementById('btn').innerHTML = '■';
+                    playing = true;
+                }else{
+                    window.clearInterval(timer);
+                    document.getElementById('btn').innerHTML = '▶';
+                    playing = false;
+                }       
+            }else if(x==8){
+                if(num==7)return;
+                num++;
+            }else if(x==-1){
+                if(num==0)return;
+                num--;
+            }else{
+                num = x;
+            }*/
+            document.getElementById('imgs').style.left = (-600 * num )+ "px";
+        }
+
+    </script>
+</head>
+<body>
+    <div id="view">
+        <div id="imgs"><img src="images/Koala.jpg"><img src="images/Chrysanthemum.jpg"><img src="images/Desert.jpg"><img src="images/Hydrangeas.jpg"><img src="images/Jellyfish.jpg"><img src="images/Lighthouse.jpg"><img src="images/Penguins.jpg"><img src="images/Tulips.jpg"></div>
+        <div id="remot">
+            <ul>
+                <li onclick="move(-1)">◁</li>
+                <li onclick="move(0)">1</li>
+                <li onclick="move(1)">2</li>
+                <li onclick="move(2)">3</li>
+                <li onclick="move(3)">4</li>
+                <li onclick="move(4)">5</li>
+                <li onclick="move(5)">6</li>
+                <li onclick="move(6)">7</li>
+                <li onclick="move(7)">8</li>
+                <li onclick="move(8)">▷</li>
+                <li onClick="move(9)" id="btn">▶</li>
+            </ul>
+        </div>
+    </div>
+</body>
+</html>

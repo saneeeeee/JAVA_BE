@@ -6,15 +6,21 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>22_ImageControll11.html</title>
 <style type="text/css">
-    #view{ position:relative; width:600px; height:400px; margin:0 auto; border:1px dashed black; }
-    #imgs{ position:absolute; width:4800px; height:400px; left:0; top:0; border:1px dashed red; transition: 0.3s; }
+    #view{ position:relative; width:600px; height:400px; margin:0 auto; border:1px dashed black; overflow: hidden;}
+    #imgs{ position:absolute; width:4800px; height:400px; left:0; top:0; border:1px dashed red; transition: 0.7s; }
     img{ width:600px; height:400px; }
 
     #remot{ position:relative; width:200px; height:50px; border:1px solid white; margin:0 auto; top:350px; text-align: center;}
     #remot ul{ list-style:none; margin:0; padding:0; display:inline-block;}
     #remot ul li{ float:left; width:14px; height:14px; background:white; border-radius: 50%; margin:18px 4px;}
 </style>
-<script type="text/javascript"></script>
+<script type="text/javascript">
+    function move(x){
+        // var dist = -1 * x * 600;
+        // document.getElementById('imgs').style.left = dist+'px';
+        document.getElementById('imgs').style.left = (-1*600*x)+'px'
+    }
+</script>
 </head>
 <body>
     <div id="view">

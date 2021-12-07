@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>23_imageControll12</title>
+    <style type="text/css">
+        #view{ position:relative; width:600px; height:400px; margin:0 auto; border:1px dashed black; overflow: hidden;}
+        #imgs{ position:absolute; width:4800px; height:400px; left:0; top:0; border:1px dashed red; transition: 0.3s; }
+        img{ width:600px; height:400px; }
+    
+        .btn{position:absolute;width:50px;height: 50px;bottom: 0;background-image: url(images/ico_movie_171115.png);overflow: hidden;}
+        #lbtn{left: 0;background-position:-60px -460px;}
+        #rbtn{right: 0;background-position: 0 -460px;}
+    </style>
+    <script type="text/javascript">
+
+        var num=0;
+        function moveLeft(){
+            // if(x>0){x--;document.getElementById('imgs').style.left = (-600 * x )+ "px";}
+            //  현재 그림 번호가 0번이면 왼쪽에 그림이 더 없으므로 함수 실행 중지
+            if(num==0) return;
+            num--;
+            document.getElementById('imgs').style.left = (-600 * num )+ "px";
+        }
+
+        function moveRight(){
+            // if(x<7){x++;document.getElementById('imgs').style.left = (-600 * x )+ "px";}    
+            //  현재 그림 번호가 7번이면 오른쪽에 그림이 더 없으므로 함수 실행 중지
+            if(num==7) return;
+            num++;
+            document.getElementById('imgs').style.left = (-600 * num )+ "px";
+        }
+
+        function move(x){
+            if(x==1){
+                if(num==7)return;
+                num++;
+            }else if(x==-1){
+                if(num==0)return;
+                num--;
+            }
+            document.getElementById('imgs').style.left = (-600 * num )+ "px";
+        }
+    </script>
+</head>
+<body>
+    <div id="view">
+        <div id="imgs"><img src="images/Koala.jpg"><img src="images/Chrysanthemum.jpg"><img src="images/Desert.jpg"><img src="images/Hydrangeas.jpg"><img src="images/Jellyfish.jpg"><img src="images/Lighthouse.jpg"><img src="images/Penguins.jpg"><img src="images/Tulips.jpg"></div>
+        
+        <div id="lbtn" class="btn" onclick="move(-1)"></div>
+        <div id="rbtn" class="btn" onclick="move(1)"></div>
+    </div>
+</body>
+</html>
