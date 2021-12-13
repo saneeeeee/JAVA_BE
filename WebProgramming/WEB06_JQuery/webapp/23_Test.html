@@ -1,0 +1,90 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>23_Test</title>
+    <style type="text/css">
+        #view{ position:relative; width:600px; height:400px; margin:0 auto; border:1px solid black; overflow: hidden;}
+        #imgs{ position:absolute; width:4800px; height:400px; left:0; top:0; /*border:1px dashed red;*/}
+        img{ width:600px; height:400px; }
+        
+        
+        #remot{ position:relative; width:300px; height:50px; border:1px solid white; margin:0 auto; top:350px; text-align: center;}
+        #remot ul{ list-style:none; margin:0; padding:0; display:inline-block;}
+        #remot ul li{float: left; height:20px;   margin:15px 4px;font-size: 14px;cursor: pointer;border-radius: 10px 10px 10px 10px;font-weight: bold;}
+
+        .unselect{background:white;color: black;width: 20px;}
+        .select{background:black;color:white; width: 35px;}
+    </style>
+    <script src="script/jquery-3.6.0.js"></script>
+    <script type="text/javascript">
+        $(function(){
+            var num = 0;
+            var playing = false;
+            var timer;
+
+            $('li').addClass('unselect');
+
+            $('li').click(function(){
+                var i = $(this).index();
+
+                if(i<8 && !playing){
+                    var dist = i*-600;
+                    num = i;
+
+                    $('#imgs').animate({left:dist},300);
+
+                    for(var j = 0 ; j < 8 ; j++){
+                        if( i != j ) $('li').eq(j).removeClass('select');
+                    }
+                    $('li').eq(i).addClass('select');
+                    
+                }else if(i == 8){
+                    if(!playing){
+                        $('li').css('cursor','default').removeClass('select');
+                        $('li').eq(num).addClass('select');
+                        $('li').eq(i).html('■').css('cursor','pointer');
+                        playing = true;
+                        timer = setInterval(function(){
+                            num++
+                            $('#imgs').animate({left:num*(-600)},300);
+                            $('li').eq(num).addClass('select');
+                            $('li').eq(num-1).removeClass('select');
+                            if(num == 7){
+                                num = -1
+                                $('li').eq(7).removeClass('select');    
+                            }
+                        },1000);
+                    }else{
+                        $('li').css('cursor','pointer');
+                        $('li').eq(i).html('▶');
+                        window.clearInterval(timer);
+                        playing = false;
+                    }
+                }
+            });
+
+            $('li').first().trigger('click');
+        });
+    </script>
+</head>
+<body>
+    <div id="view">
+        <div id="imgs"><img src="images/Koala.jpg"><img src="images/Chrysanthemum.jpg"><img src="images/Desert.jpg"><img src="images/Hydrangeas.jpg"><img src="images/Jellyfish.jpg"><img src="images/Lighthouse.jpg"><img src="images/Penguins.jpg"><img src="images/Tulips.jpg"></div>
+        <div id="remot">
+            <ul>
+                <li>1</li>
+                <li>2</li>
+                <li>3</li>
+                <li>4</li>
+                <li>5</li>
+                <li>6</li>
+                <li>7</li>
+                <li>8</li>
+                <li>▶</li>
+            </ul>
+        </div>
+    </div>
+</body>
+</html>
