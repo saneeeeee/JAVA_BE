@@ -75,3 +75,68 @@ select name, phone from memberlist where gender is not null;
 update memberlist set gender = 'M' where gender is null;
 -- [16] booklist 에서 도서 제목에 두번째 글자가 '것' 인 도서 정보
 select * from booklist where subject like '_것%';
+
+-- emp 테이블에서 deptno 가 10, 20, 30, 40 중 하나인 데이터 모두
+select * from emp where deptno = 10 or deptno = 20 or deptno = 40;
+
+-- 조건식(ANY, SOME, ALL, (IN))
+-- where 절에서 사용하는 그룹 내 해당 요소 찾기 함수 들
+-- 1. ANY 
+select * from emp where deptno = any(10,20,40);
+-- ANY() 괄호안에 나열된 내용 중 어느하나라도 해당하는 것이 있다면 검색 대상으로 함
+
+-- 2. --SOME 조건식 - ANY와 동일 - IN 과도 동일
+select * from emp where deptno = some(10,20,40);
+select * from emp where deptno in (10,20,40);
+
+-- 3. ALL
+select * from emp where deptno <> all(10,20,40);
+select * from emp where deptno <> 10 and deptno <> 20 and deptno <>40;
+-- 두번째 사용예처럼 모두와 다를때를 위해 사용되곤 합니다 사용빈도수가 낮습니다
+
+-- 4. -- 논리조건식 NOT
+select * from emp where deptno not in(10,20,40);
+-- in() 안에 있는것과 하나도 매칭되지 않은 값이 검색대상
+
+
+-- 정렬(Sort) - where 구문 뒤에, 또는 구문의 맨 끝에 Order by 필드명 [desc] 라고 기술합니다.
+-- select 명령의 결과를 특정 필드값의 오름차순 이나 내림 차순으로 정렬하라는 명령
+-- asc : 오름차순 정렬, 쓰지 않으면 기본 오름차순 정렬로 실행됩니다
+-- desc : 내림차순 정렬, 내림 차순 정렬을 위해서는 반드시 필드명 뒤에 써야하는 키워드입니다.
+
+-- emp 테이블에서
+-- sals 이 1000 이상인 데이터를 ename 의 오름차순 으로 정렬하여 조회
+select * from emp where sal >=1000 order by ename; -- 오름 차순 asc는 생략
+
+-- sals 이 1000 이상인 데이터를 ename 의 내림차순 으로 정렬하여 조회
+select * from emp where sal >=1000 order by ename desc;
+-- job 으로 내림차순 정렬
+select * from emp order by job desc;
+-- job 으로 내림차순 정렬 후 같은 job_id 사이에서는 순서를 hire date의 내림차순으로 정렬
+select * from emp order by job desc, hiredate desc;
+-- 두개 이상의 정렬 기준이 필요하다면 위와 같이 (,)로 구분해서 두가지 기준을 지정해주며,
+-- 위의 예제로 봤을때 job 으로 1차 내림 차순 정렬하고, 같은 job 값들 사이에 hiredate 로
+-- 내림 차순 정렬합니다
+
+
+-- 그 외 활용하기 좋은 select 에 대한 예제
+
+-- 부서번호가 10이 아닌 사원 (아래 두 문장은 같은 의미의 명령입니다)
+select * from emp where not(deptno = 10);
+select * from emp where deptno <> 10;
+
+-- 급여가 1000 달러 이상, 3000 달러 이하
+select * from emp where sal >= 10000 and sal<=30000;
+select * from emp where sal between 10000 and 30000;
+
+-- 특정 필드 값이 널인 레코드 또는 널이 아닌 레코드
+select * from emp where comm is null ; -- comm 필드가 null 인 레코드
+select * from emp where comm is not null ; -- comm 필드가 null 이 아닌 레코드
+
+-- select 와 from 사이에는 문자 연산 및 산술 연산도 쓸 수 있습니다 ... 사원의 연봉 출력
+select deptno, ename , sal*12 as 연봉 from emp;
+
+-- select comm * 100 from emp;
+-- sal 값이 null 인 경우 위의 계산에 오류가 발생합니다. 이를 해결하기 위한 방법
+select deptno, ename, comm, nvl(sal,1000)*12 as 연봉 from emp;
+-- nvl 함수는 널값을 다른 값으로 바꿔주는 내장함수로서 다음 단원에서 다른 함수들과 함께 학습합니다
