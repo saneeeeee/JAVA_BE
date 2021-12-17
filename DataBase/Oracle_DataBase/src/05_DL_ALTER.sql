@@ -56,6 +56,7 @@ alter table memberlist add gender varchar2(3);
 
 -- memberlist 에 나이(age) 필드를 number(2) 로 추가
 alter table memberlist add age number(2);
+alter table memberlist modify age number(3);
 
 -- 4. 필드의 삭제
 -- ALTER TABLE 테이블명 DROP COLUMN 필드명
@@ -101,6 +102,7 @@ alter table rentlist modify booknum number(5);
 alter table rentlist modify membernum number(5);
 
 
+
 -- 추가 : ALTER TABLE 테이블명 ADD CONSTRAINT 제약조건명 제약조건식
 
 -- 필드 level(수준) 의 제약 조건은 필드의 modify  하여서 같이 수정 생성 합니다.
@@ -112,7 +114,8 @@ alter table memberlist add constraint check_gender check(gender in ('F','M'));
 -- gender 필드에 들어갈 값이 in() 함수 안의 항목 중 하나와 같다면 입력 허용, 아니면 불허하는 제약조건입니다
 
 -- memberlist 테이블의 나이(age) 필드에 120 살이 초과 되는 나이는 입력되지 못하게 제약 조건 추가
-alter table memberlist add constraint check_age check(age<100);
+alter table memberlist drop constraint check_age;
+alter table memberlist add constraint check_age check(age<150);
 
 -- 위에 삭제되었던 fk1, fk2, rent_pk 제약조건은 다시 설정하세요
 -- rent_pk 는 num 필드로만 설정하세요
@@ -126,6 +129,8 @@ select * from MEMBERLIST;
 select * from RENTLIST;
 
 -- 테이블 생성 연습 문제
+drop table orders1 purge;
+drop table orders2 purge;
 
 create table orders1(
 	order_id number(12,0),

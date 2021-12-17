@@ -16,7 +16,7 @@
 drop table booklist purge;
 
 create table booklist(
-	booknum number(5) not null,
+	booknum varchar2(5) not null,
 	subject varchar2(30) not null,
 	makeyear number(4) default 2021,	-- number(4) 는 4바이트 숫자가 아니라 4자리 숫자를 의미합니다.
 	inprice number(6) default 0,	
@@ -76,8 +76,9 @@ create table booklist(
 -- 				Bpoint 기본값 0, joinDate 기본값 sysdate( joindate date default sysdate)
  
 drop table MemberList purge;
+
 create table MemberList(
-	memberNum number(5) not null,
+	memberNum varchar2(5) not null,
 	memberName varchar2(12) not null,
 	Phone varchar2(13) not null,
 	Birth date,
@@ -103,8 +104,8 @@ drop table rentlist purge;
 create table rentlist(
 	rent_date date default sysdate,
 	idx number(5) not null,				-- 해당일자의 대여순번
-	booknum number(5) not null,
-	memberNum number(5) not null,
+	booknum varchar2(5) not null,
+	memberNum varchar2(5) not null,
 	discount number(4),
 	
 	constraint rent_pk primary key(rent_date, idx),
