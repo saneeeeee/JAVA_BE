@@ -12,3 +12,7 @@ insert into customer values(4, '홍길북', 'abc4@abc.com', '010-4234-2234');
 insert into customer values(5, '아무개', 'abc5@abc.com', '010-5234-1234');
 
 select * from customer;
+
+create sequence num_seq start with 7 increment by 1;
+
+
