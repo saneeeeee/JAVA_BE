@@ -105,7 +105,14 @@ public class RentDao {
 	public int delete(int num) {
 		int result = 0;
 		con = DBM.getConnection();
-		DBM.close(con, pstmt, rs);
+		String sql = "delete from rentlist where num = "+num;
+		try {
+			pstmt = con.prepareStatement(sql);
+			result = pstmt.executeUpdate();
+		} catch (SQLException e) { e.printStackTrace();
+		} finally {
+			DBM.close(con, pstmt, rs);
+		}
 		return result;
 	}
 
@@ -133,5 +140,31 @@ public class RentDao {
 		} catch (SQLException e) { e.printStackTrace();
 		} finally { DBM.close(con, pstmt, rs);}
 		return result;
+	}
+
+	public ArrayList<RentDetailDto> selectAll() {
+		ArrayList<RentDetailDto> list = new ArrayList<RentDetailDto>();
+		con = DBM.getConnection();
+		String sql = "select * from rentdetail";
+		
+		try {
+			pstmt = con.prepareStatement(sql);
+			rs = pstmt.executeQuery();	
+			while(rs.next()) {
+				
+				RentDetailDto rdd = new RentDetailDto();
+				rdd.setRentdate(rs.getString("rentdate"));
+				rdd.setRentnum(rs.getInt("rentnum"));
+				rdd.setMembernumber(rs.getInt("membernumber"));
+				rdd.setMembername(rs.getString("membername"));
+				rdd.setPrice(rs.getInt("price"));
+				rdd.setBooknum(rs.getInt("booknumber"));
+				rdd.setSubject(rs.getString("subject"));
+				list.add( rdd );
+			}
+		} catch (SQLException e) { e.printStackTrace();
+		} finally { DBM.close(con, pstmt, rs);}
+	
+		return list;
 	};
 }
