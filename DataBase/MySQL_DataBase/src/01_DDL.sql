@@ -57,3 +57,22 @@ CREATE TABLE `scott`.`rentlist` (
 ENGINE = InnoDB
 DEFAULT CHARACTER SET = utf8mb4
 COMMENT = '대출 목록';
+
+ALTER TABLE `scott`.`rentlist` 
+DROP FOREIGN KEY `fk1`,
+DROP FOREIGN KEY `fk2`;
+ALTER TABLE `scott`.`rentlist` 
+;
+ALTER TABLE `scott`.`rentlist` ALTER INDEX `fk1_idx` VISIBLE;
+ALTER TABLE `scott`.`rentlist` ALTER INDEX `fk2_idx` VISIBLE;
+ALTER TABLE `scott`.`rentlist` 
+ADD CONSTRAINT `fk1`
+  FOREIGN KEY (`booknum`)
+  REFERENCES `scott`.`booklist` (`num`)
+  ON DELETE NO ACTION
+  ON UPDATE NO ACTION,
+ADD CONSTRAINT `fk2`
+  FOREIGN KEY (`membernum`)
+  REFERENCES `scott`.`memberlist` (`num`)
+  ON DELETE CASCADE
+  ON UPDATE CASCADE;
