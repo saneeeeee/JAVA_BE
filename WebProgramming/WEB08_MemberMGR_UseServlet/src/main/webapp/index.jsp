@@ -8,7 +8,7 @@
 <body>
 <!-- 안녕하세요 -->
 <%
-//	response.sendRedirect("member/loginForm.jsp");
+// response.sendRedirect("member/loginForm.jsp");
 response.sendRedirect("login.do");
 %>
 </body>
