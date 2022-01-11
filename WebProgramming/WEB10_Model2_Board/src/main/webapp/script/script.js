@@ -114,7 +114,28 @@ function boardCheck(){
 	return true;
 }
 
-function open_win(num,op){
+function open_win(num,name){
+	var url = "board.do?command=boardPassForm&num="+num;
+	var opt = "toolbar=no, menubar=no, scrollbars=no, resizable=no,"
+					+ "width=600, height=300";
+	window.open(url,name,opt);
 	
-	
+}
+
+function passCheck(){
+	if(document.frm.pass.value.length == 0){
+		alert("비밀먼호를 입력하세요.")
+		document.frm.pass.focus();
+		return false;
+	}
+	return true;
+}
+
+function replyCheck(){
+	if(document.frm_reply.content.value.length == 0){
+		alert("내용을 입력해주세요.")
+		document.frm_reply.content.focus();
+		return false;
+	}
+	return true;
 }

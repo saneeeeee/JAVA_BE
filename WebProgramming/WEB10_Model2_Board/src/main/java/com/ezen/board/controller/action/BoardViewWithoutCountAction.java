@@ -12,15 +12,15 @@ import com.ezen.board.dao.BoardDao;
 import com.ezen.board.dto.BoardDto;
 import com.ezen.board.dto.ReplyDto;
 
-public class BoardViewAction implements Action {
+public class BoardViewWithoutCountAction implements Action {
 
 	@Override
 	public void execute(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		//	게시물의 조회수를 1증가시킵니다.
 		int num = Integer.parseInt(request.getParameter("num"));
 		BoardDao bdao = BoardDao.getInstance();
-		bdao.plusReadCount(num);
-		
+		//	bdao.plusReadCount(num);		//	조회수 증가 생략
+			
 		//	게시물을 읽어와서 request 에 담고, boardView.jsp 로 이동합니다.
 		BoardDto bdto = bdao.getBoard(num);
 		request.setAttribute("board", bdto);

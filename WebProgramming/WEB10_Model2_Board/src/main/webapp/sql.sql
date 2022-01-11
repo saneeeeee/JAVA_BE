@@ -13,8 +13,6 @@ create table board(
 	writedate date default sysdate		--	작성일자
 );
 
-
-
 drop sequence board_seq;
 create sequence board_seq start with 1 increment by 1;
 
@@ -45,3 +43,16 @@ values(board_seq.nextVal,'somi','abc2@abc.com','1234','도배용 2',
 insert into board(num, userid, email, pass, title, content)
 values(board_seq.nextVal,'somi','abc2@abc.com','1234','도배용 3',
 	'내용은 도배');
+	
+	
+drop table reply purge;
+create table reply(
+	replynum number(7) primary key,
+	boardnum number(5),
+	userid varchar2(20),
+	writedate date default sysdate,
+	content varchar2(1000)
+);
+
+drop sequence reply_seq;
+create sequence reply_seq start with 1 increment by 1;
